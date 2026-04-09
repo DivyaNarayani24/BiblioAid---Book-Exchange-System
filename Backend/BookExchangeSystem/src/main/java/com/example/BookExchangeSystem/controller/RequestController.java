@@ -1,11 +1,11 @@
-package com.example.BookExchangeSystem.Controller;
+package com.example.BookExchangeSystem.controller;
 
-import com.example.BookExchangeSystem.Model.Book;
-import com.example.BookExchangeSystem.Model.Request;
-import com.example.BookExchangeSystem.Model.User;
-import com.example.BookExchangeSystem.Service.BookService;
-import com.example.BookExchangeSystem.Service.RequestService;
-import com.example.BookExchangeSystem.Service.UserService;
+import com.example.BookExchangeSystem.model.Book;
+import com.example.BookExchangeSystem.model.Request;
+import com.example.BookExchangeSystem.model.User;
+import com.example.BookExchangeSystem.service.BookService;
+import com.example.BookExchangeSystem.service.RequestService;
+import com.example.BookExchangeSystem.service.UserService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -69,6 +69,21 @@ public class RequestController {
     public ResponseEntity<List<Request>> getRequestsByUserId(@PathVariable Long userId) {
         List<Request> requests = requestService.getRequestsByUserId(userId);
         return ResponseEntity.ok(requests);
+    }
+
+    @GetMapping("/owner/{ownerId}")
+    public ResponseEntity<List<Request>> getRequestsByOwner(@PathVariable Long ownerId) {
+        return ResponseEntity.ok(requestService.getRequestsByBookOwner(ownerId));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteRequest(@PathVariable Long id) {
+        Request request = requestService.getRequestById(id);
+        if (request == null) {
+            return ResponseEntity.notFound().build();
+        }
+        requestService.deleteRequest(id);
+        return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/{id}/status")

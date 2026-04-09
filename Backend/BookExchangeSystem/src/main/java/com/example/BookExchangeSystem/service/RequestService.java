@@ -1,7 +1,7 @@
-package com.example.BookExchangeSystem.Service;
+package com.example.BookExchangeSystem.service;
 
-import com.example.BookExchangeSystem.Model.Request;
-import com.example.BookExchangeSystem.Repository.RequestRepository;
+import com.example.BookExchangeSystem.model.Request;
+import com.example.BookExchangeSystem.repository.RequestRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,5 +21,11 @@ public class RequestService {
 
     public List<Request> getRequestsByUserId(Long userId) {
         return requestRepository.findByUserId(userId);
+    }
+    public List<Request> getRequestsByBookOwner(Long ownerId) {
+        return requestRepository.findByBookOwnerId(ownerId);
+    }
+    public void deleteRequest(Long id) {
+        requestRepository.deleteById(id);
     }
 }

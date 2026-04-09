@@ -1,9 +1,9 @@
-package com.example.BookExchangeSystem.Controller;
+package com.example.BookExchangeSystem.controller;
 
-import com.example.BookExchangeSystem.Model.Book;
-import com.example.BookExchangeSystem.Model.User;
-import com.example.BookExchangeSystem.Service.BookService;
-import com.example.BookExchangeSystem.Service.UserService;
+import com.example.BookExchangeSystem.model.Book;
+import com.example.BookExchangeSystem.model.User;
+import com.example.BookExchangeSystem.service.BookService;
+import com.example.BookExchangeSystem.service.UserService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

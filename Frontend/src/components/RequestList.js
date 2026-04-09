@@ -20,6 +20,17 @@ function RequestList({ currentUser, setCurrentPage }) {
     }
   };
 
+  const handleCancel = async (requestId) => {
+    try {
+      await fetch(`http://localhost:2222/api/requests/${requestId}`, {
+        method: 'DELETE'
+      });
+      setRequests(requests.filter(r => r.id !== requestId));
+    } catch (err) {
+      setError('Failed to cancel request');
+    }
+  };
+
   const filteredRequests = requests.filter(request => {
     if (filter === 'all') return true;
     return request.status === filter;
@@ -82,6 +93,16 @@ function RequestList({ currentUser, setCurrentPage }) {
               <span className={`request-status ${request.status}`}>
                 {request.status.toUpperCase()}
               </span>
+
+              {request.status === 'pending' && (
+  <button
+    className="btn btn-secondary"
+    style={{ marginTop: '10px' }}
+    onClick={() => handleCancel(request.id)}
+  >
+    ❌ Cancel Request
+  </button>
+)}
               
               {request.status === 'approved' && (
                 <div style={{

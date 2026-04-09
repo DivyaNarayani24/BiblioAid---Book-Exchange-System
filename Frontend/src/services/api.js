@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const API_BASE = "http://localhost:3333/api";
+const API_BASE = "http://localhost:2222/api";
 
 // User APIs
 export const addUser = async (user) => {
-  const res = await axios.post(`${API_BASE}/users`, user);
+  const res = await axios.post(`${API_BASE}/users/register`, user);
   return res.data;
 };
 

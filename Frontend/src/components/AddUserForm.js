@@ -37,17 +37,22 @@ function AddUserForm({ setCurrentPage, onSignupSuccess, onBackToLogin }) {
       };
 
       const savedUser = await addUser(newUser);
-      setSuccess('Account created successfully!');
-      
-      setTimeout(() => {
-        onSignupSuccess(savedUser);
-      }, 1500);
+setSuccess('Account created successfully!');
+
+setTimeout(() => {
+  onSignupSuccess({
+    id: savedUser.id,
+    name: savedUser.name,
+    email: savedUser.email,
+    phoneNumber: savedUser.phoneNumber
+  });
+}, 1500);
     } catch (err) {
-      if (err.response?.data === 'Email already registered') {
-        setError('This email is already registered. Please login.');
-      } else {
-        setError('Failed to create account. Please try again.');
-      }
+      if (err.response?.data?.message === 'Email already registered') {
+  setError('This email is already registered. Please login.');
+} else {
+  setError('Failed to create account. Please try again.');
+}
     }
   };
 

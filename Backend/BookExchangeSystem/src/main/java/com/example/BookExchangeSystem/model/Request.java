@@ -1,4 +1,4 @@
-package com.example.BookExchangeSystem.Model;
+package com.example.BookExchangeSystem.model;
 
 import jakarta.persistence.*;
 
